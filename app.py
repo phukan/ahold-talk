@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 
 import urllib
@@ -14,14 +13,14 @@ from flask import make_response
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET', 'POST'])
 def index():
     return '''
     <head></head>
     <body><h1>app of ujjal phukan</h1></body>
     '''
 
-@app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['GET', 'POST'])
 def webhook():
 
     req = request.get_json(silent=True, force=True)
