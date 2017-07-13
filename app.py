@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 
 import urllib
@@ -12,6 +13,13 @@ from flask import make_response
 # Flask app should start in global layout
 
 app = Flask(__name__)
+
+@app.route('/', methods=['POST'])
+def index():
+    return '''
+    <head></head>
+    <body><h1>app of ujjal phukan</h1></body>
+    '''
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
