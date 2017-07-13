@@ -13,7 +13,7 @@ from flask import make_response
 
 app = Flask(__name__)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
     return '''
     <head></head>
