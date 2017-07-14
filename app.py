@@ -20,7 +20,7 @@ def index():
     <body><h1>app of ujjal phukan</h1></body>
     '''
 
-@app.route('/webhook', methods=['GET', 'POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
 
     req = request.get_json(silent=True, force=True)
@@ -54,6 +54,6 @@ def makeWebhookResult(req):
     }
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.getenv('PORT', 5000))
     print("Starting app on port %d" % port)
     app.run(debug=True, port=port, host='0.0.0.0')
