@@ -1,24 +1,22 @@
 #!/usr/bin/env python
 
-import urllib
-import json
+
 import os
 
 from flask import Flask
 from flask import request
 from flask import make_response
-
+import requests
+import logging
+import sys
 
 # Flask app should start in global layout
-
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
-@app.route('/')
-def index():
-    return '''
-    <head></head>
-    <body><h1>app of ujjal phukan</h1></body>
-    '''
+
+
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
@@ -28,8 +26,9 @@ def webhook():
     else:
         return 'foo'
 
-
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
+
     print("Starting app on port %d" % port)
-    app.run(debug=True, port=port, host='0.0.0.0')
+
+    app.run(debug=False, port=port, host='0.0.0.0')
