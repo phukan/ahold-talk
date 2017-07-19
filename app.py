@@ -22,16 +22,11 @@ def index():
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-
-    req = request.get_json(force=True)
-    print("Request:")
-    print(json.dumps(req, indent=4))
-    res = makeWebhookResult(req)
-    res = json.dumps(res, indent=4)
-    print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
+    if request.headers['apikey'] == 'a3be1e29-8d95-474c-9ae8-faa88ade48b4':
+        response = requests.get('http://noecommercews1098.cloudapp.net/api.ai/ordering.ashx', data = request.data)
+        return response.text
+    else:
+        return 'foo'
 
 
 
